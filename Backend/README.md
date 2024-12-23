@@ -145,3 +145,85 @@ Example:
     "error": "Internal Server Error"
   }
   ```
+
+# User Profile Endpoint
+
+## Endpoint: `/users/profile`
+
+### Method: GET
+
+### Description:
+This endpoint is used to retrieve the profile of the authenticated user.
+
+### Responses:
+
+#### Success:
+- **Status Code: 200**
+- **Body:**
+  ```json
+  {
+    "_id": "user_id",
+    "fullname": {
+      "firstname": "John",
+      "lastname": "Doe"
+    },
+    "email": "john.doe@example.com",
+    "socketId": null
+  }
+  ```
+
+#### Authentication Errors:
+- **Status Code: 401**
+- **Body:**
+  ```json
+  {
+    "message": "Unauthorized"
+  }
+  ```
+
+#### Server Error:
+- **Status Code: 500**
+- **Body:**
+  ```json
+  {
+    "error": "Internal Server Error"
+  }
+  ```
+
+# User Logout Endpoint
+
+## Endpoint: `/users/logout`
+
+### Method: GET
+
+### Description:
+This endpoint is used to log out the authenticated user by clearing the authentication token and blacklisting it.
+
+### Responses:
+
+#### Success:
+- **Status Code: 200**
+- **Body:**
+  ```json
+  {
+    "message": "Logged out successfully"
+  }
+  ```
+
+#### Authentication Errors:
+- **Status Code: 401**
+- **Body:**
+  ```json
+  {
+    "message": "Unauthorized"
+  }
+  ```
+
+#### Server Error:
+- **Status Code: 500**
+- **Body:**
+  ```json
+  {
+    "error": "Internal Server Error"
+  }
+  ```
