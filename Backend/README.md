@@ -227,3 +227,88 @@ This endpoint is used to log out the authenticated user by clearing the authenti
     "error": "Internal Server Error"
   }
   ```
+  # Captain Registration Endpoint
+
+## Endpoint: `/captains/register`
+
+### Method: POST
+
+### Description:
+This endpoint is used to register a new captain in the system. It requires the captain's first name, last name, email, password, and vehicle details.
+
+### Request Body:
+The request body should be a JSON object containing the following fields:
+- `fullname`: An object containing:
+  - `firstname`: The captain's first name (required, minimum 3 characters).
+  - `lastname`: The captain's last name (optional, minimum 3 characters).
+- `email`: The captain's email address (required, must be a valid email).
+- `password`: The captain's password (required, minimum 6 characters).
+- `vehicle`: An object containing:
+  - `color`: The vehicle's color (required, minimum 3 characters).
+  - `plate`: The vehicle's plate number (required, minimum 3 characters).
+  - `capacity`: The vehicle's capacity (required, must be at least 1).
+  - `vehicleType`: The type of vehicle (required, must be one of 'car', 'truck', 'motorcycle').
+
+Example:
+```json
+{
+  "fullname": {
+    "firstname": "Jane",
+    "lastname": "Doe"
+  },
+  "email": "jane.doe@example.com",
+  "password": "password123",
+  "vehicle": {
+    "color": "Red",
+    "plate": "XYZ123",
+    "capacity": 4,
+    "vehicleType": "car"
+  }
+}
+```
+
+### Responses:
+
+#### Success:
+- **Status Code: 201**
+- **Body:**
+  ```json
+  {
+    "_id": "captain_id",
+    "fullname": {
+      "firstname": "Jane",
+      "lastname": "Doe"
+    },
+    "email": "jane.doe@example.com",
+    "vehicle": {
+      "color": "Red",
+      "plate": "XYZ123",
+      "capacity": 4,
+      "vehicleType": "car"
+    }
+  }
+  ```
+
+#### Validation Errors:
+- **Status Code: 400**
+- **Body:**
+  ```json
+  {
+    "errors": [
+      {
+        "msg": "Error message",
+        "param": "field_name",
+        "location": "body"
+      }
+    ]
+  }
+  ```
+
+#### Server Error:
+- **Status Code: 500**
+- **Body:**
+  ```json
+  {
+    "error": "Internal Server Error"
+  }
+  ```
