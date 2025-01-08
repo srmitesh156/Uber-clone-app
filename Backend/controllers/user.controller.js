@@ -10,6 +10,8 @@ module.exports.registerUser = async (req, res, next) => {
   }
 
   // console.log(req.body);
+  // console.log(req.body.fullname.firstname);
+  
 
   const { fullname, email, password } = req.body;
 
