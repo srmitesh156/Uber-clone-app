@@ -8,20 +8,23 @@ const UserSignup = () => {
   const [password,setPassword] = useState('');
   const [firstname,setFirstname] = useState('');
   const [lastname,setLastname] = useState('');
-  const [userData,setUserData] = useState({});
+  const [newUserData,setUserData] = useState({});
   const submitHandler = (e)=>{
     e.preventDefault();
   
-  setUserData({
-    username:{
-      firstname:firstname,
-      lastname:lastname
+  const newUserData = {
+    fullName: {
+      firstname,
+      lastname
     },
-    email:email,
-    password:password
-  })
+    email,
+    password
+  };
 
-  console.log(userData);
+  setUserData(newUserData);
+
+  // console.log(newUserData); 
+
   setEmail('');
   setFirstname('');
   setLastname('');
@@ -97,7 +100,7 @@ const UserSignup = () => {
             className="bg-[#111] text-white font-semibolt mb-3 rounded px-4 py-2 w-full text-lg placeholder:text-base"
             type="submit"
           >
-            Login
+            Sign Up
           </button>
         </form>
         <p className="text-center">
@@ -108,7 +111,8 @@ const UserSignup = () => {
         </p>
       </div>
       <div>
-      <p className="text-[10px] leading-tight">By proceeding, you consent to get calls, WhatsApp or SMS messages, including by automated means, from Uber and its affiliates to the number provided.</p>
+      <p className="text-[10px] leading-tight">This site is protected by reCAPTCHA and the <span className="underline">Google Policy</span> and <span className="underline">Terms of Service apply</span>.
+      Privacy</p>
       </div>
     </div>
   )
