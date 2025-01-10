@@ -1,7 +1,7 @@
 // import React from 'react'
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 const UserSignup = () => {
   const [email,setEmail] = useState('');
@@ -9,6 +9,8 @@ const UserSignup = () => {
   const [firstname,setFirstname] = useState('');
   const [lastname,setLastname] = useState('');
   const [newUserData,setUserData] = useState({});
+
+  const navigated = useNavigate();
   const submitHandler = (e)=>{
     e.preventDefault();
   
