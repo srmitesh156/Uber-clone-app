@@ -1,7 +1,9 @@
 // import React from 'react'
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
+import axios from 'axios';
+import {UserDataContext} from '../context/UserContext';
 
 const UserSignup = () => {
   const [email,setEmail] = useState('');
@@ -10,21 +12,31 @@ const UserSignup = () => {
   const [lastname,setLastname] = useState('');
   const [newUserData,setUserData] = useState({});
 
-  const navigated = useNavigate();
-  const submitHandler = (e)=>{
+  const navigate = useNavigate();
+  
+  const {user,setUser} = useContext(UserDataContext);
+  const submitHandler = async(e)=>{
     e.preventDefault();
   
   const newUserData = {
-    fullName: {
-      firstname,
-      lastname
+    fullname: {
+      firstname: firstname,
+      lastname: lastname
     },
-    email,
-    password
+    email: email,
+    password: password
   };
 
   setUserData(newUserData);
+  const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/register`,newUserData);
 
+  if(response.status === 201){
+    const data = response.data;
+
+    setUser(data.user);
+
+    navigate('/home');
+  }
   // console.log(newUserData); 
 
   setEmail('');
@@ -102,7 +114,7 @@ const UserSignup = () => {
             className="bg-[#111] text-white font-semibolt mb-3 rounded px-4 py-2 w-full text-lg placeholder:text-base"
             type="submit"
           >
-            Sign Up
+            Create Account
           </button>
         </form>
         <p className="text-center">
